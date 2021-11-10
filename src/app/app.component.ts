@@ -8,9 +8,5 @@ import { JsonService } from './json.service';
 })
 export class AppComponent {
   title = 'pruebaTecnicaDanielHernandez';
-  constructor(public json: JsonService) {
-    this.json.getJson('https://proyectatufuturo.app:7444/menu').subscribe((res: any) => {
-      console.log(res);
-    })
-  }
+  
 }
