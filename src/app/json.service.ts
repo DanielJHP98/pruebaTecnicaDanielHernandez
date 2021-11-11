@@ -9,6 +9,6 @@ export class JsonService {
 
   constructor(private http: HttpClient) { }
   getJson(url: string){//para el uso del servicio se tiene que mandar el url del servicio que se va a consumir
-    return this.http.get(url);
+    return this.http.get<{menu:any[]}>(url);
   }
 }

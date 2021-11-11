@@ -4,12 +4,16 @@ import { JsonService } from "src/app/json.service";
 @Component({
     selector: 'Sbr',
     templateUrl: './Sidebar.component.html',
-    styleUrls: ['../../app.component.css']
+    styleUrls: ['./Sidebar.component.css']
 })
 export class Sidebar {
+    menu: Array<any> = [];
     constructor(public json: JsonService) {
-        this.json.getJson('https://proyectatufuturo.app:7444/menu').subscribe((res: any) => {
-            console.log(res);
+        this.json.getJson('https://proyectatufuturo.app:7444/menu').subscribe(res => {
+            res.menu.forEach(element => {
+                this.menu.push(element);
+            })
+            console.log(this.menu);
         })
     }
 }
