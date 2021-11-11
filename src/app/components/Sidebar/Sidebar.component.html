@@ -1,3 +1,33 @@
+<!-- Intento de Forma recursiva pero sin casobase que pueda detener el loop (Ciclado)
+<ng-container *ngTemplateOutlet="elementMenuTemp; context:{ submenu : menu }">
+</ng-container>
+
+<ng-template #elementMenuTemp>
+    <div *ngFor="let element of menu">
+        <a href="#{{element.name}}"><i class="{{element.icon}}"></i> {{element.name}}&emsp;<span class="badge badge-primary float-right">{{element.badge}}</span></a>
+        <ng-container *ngIf="element.menu">
+            <ng-container *ngTemplateOutlet="elementMenuTemp; context:{submenu: element.menu}">
+            </ng-container>
+        </ng-container>
+    </div>
+</ng-template> -->
+<!-- Intento de forma maual conociendo la cantidad de niveles  -->
 <div class="sidebar">
-    <a *ngFor="let element of menu" href="#{{element.name}}"><i class="{{element.icon}}"></i> {{element.name}}</a>
+    <div *ngFor="let element of menu">
+        <a href="#{{element.name}}"><i class="{{element.icon}}"></i> {{element.name}}&emsp;<span
+                class="badge badge-primary float-right">{{element.badge}}</span></a>
+        
+        <div *ngIf="element.menu">
+            <div *ngFor="let element1 of element.menu" >
+                <a href="#{{element1.name}}"><i class="{{element1.icon}}"></i>
+                    {{element1.name}}&emsp;<span class="badge badge-primary float-right">{{element1.badge}}</span></a>
+                    <div *ngIf="element1.menu">
+                        &emsp;<a *ngFor="let element2 of element1.menu" href="#{{element2.name}}"><i class="{{element2.icon}}"></i>
+                            {{element2.name}}&emsp;<span class="badge badge-primary float-right">{{element2.badge}}</span></a>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <a *ngIf="element.menu" href="#{{element.name}}"><i class="{{element.icon}}"></i> {{element.name}}&emsp;<span class="badge badge-primary float-right">{{element.badge}}</span></a> -->
 </div>
